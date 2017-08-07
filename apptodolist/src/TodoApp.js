@@ -4,15 +4,13 @@ import React, {Component} from 'react';
 class AddTodoBar extends Component {
     constructor (props) {
         super(props);
-        this.todoArr=[""],
+        this.todoArr=["item 1", "item 2"],
         this.state=({
-            value: "",
-            //todoArr: []
+            value: ""
         });
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
-
     handleChange(e) {
         this.setState({
             value: e.target.value
@@ -25,8 +23,7 @@ class AddTodoBar extends Component {
             return;
         } else {
             this.todoArr.push(this.state.value);
-            console.log(this.todoArr);
-            //handle display todo row
+            console.log("added todos:" + this.todoArr);
         }
     }
     render() {
@@ -49,23 +46,20 @@ class AddTodoBar extends Component {
 
 //the list display todo
 class TodoList extends Component {
+    constructor(props) {
+        super(props);
+    }
     
     render() {
-        //let todos = this.props.todos;
-        console.log("hello from todolist");
-        console.log(this.props.todos);
+        const listItems = this.props.todos;
+        console.log("list todo to render " + listItems);
         return (
-            <form>
-                {this.props.todos.map(function(todo) {
-                    <p>
-                        <input type="checkbox"/>
-                        {' '}
-                        {todo}
-                    </p>     
-                    console.log("render done");        
-                })}      
-            </form>
-        );
+            <ul>
+                {this.props.todos.map(function(todo){
+                    return <li key={todo.toString()}>{todo}</li>;
+                })}
+            </ul>
+        )
     }
 }
 class TodoApp extends Component {
@@ -78,6 +72,4 @@ class TodoApp extends Component {
         );
     }
 }
-
-
 export default AddTodoBar;

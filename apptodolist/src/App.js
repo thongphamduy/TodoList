@@ -1,21 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import TodoBar from "./TodoBar";
+import TodoList from "./TodoList";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+class TodoApp extends Component {
+    constructor() {
+        super();
+        this.state=({
+            todos: []
+        });
+    }
+
+    getListTodoFromInput (updatedList) {
+        //do something
+        this.setState ({
+            todos: updatedList
+        });
+    }
+    render() {
+        return (
+            <div>
+                <TodoBar getTodo={this.getListTodoFromInput.bind(this)}/>
+                <TodoList todos={this.state.todos} />
+            </div>
+        );
+    }
 }
 
-export default App;
+export default TodoApp;

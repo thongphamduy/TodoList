@@ -38,7 +38,7 @@ class AddTodoBar extends Component {
                         onChange={this.handleChange}/>
                     <input type="submit" value="ADD"/>
                 </form>
-                <TodoList todos={this.todoArr}/>
+                {/*<TodoList todos={this.todoArr}/>*/}
             </div>
         );
     }
@@ -48,11 +48,16 @@ class AddTodoBar extends Component {
 class TodoList extends Component {
     constructor(props) {
         super(props);
+        this.listItems = [];
     }
-    
+
+    onListItemsChanged () {
+
+    }
+
     render() {
-        const listItems = this.props.todos;
-        console.log("list todo to render " + listItems);
+        this.listItems = this.props.todos;
+        console.log("list todo to render " + this.listItems);
         return (
             <ul>
                 {this.props.todos.map(function(todo){

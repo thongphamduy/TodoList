@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+const  initState = {
+    value: ""
+}
 class TodoBar extends Component {
     constructor (props) {
         super(props);
-        this.todoArr=[],
-            this.state=({
-                value: ""
-            });
+        this.todoArr=[];
+        this.state= initState;
+
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
@@ -17,14 +19,19 @@ class TodoBar extends Component {
             value: e.target.value
         });
     }
+
+    reset = () => {
+        this.state = initState;
+}
     handleSubmit(e) {
         e.preventDefault();
         if(this.state.value === "") {
             return;
         } else {
             this.todoArr.push(this.state.value);
-            console.log("added todos:" + this.todoArr);
+            //console.log("added todos:" + this.todoArr);
             this.props.getTodo(this.todoArr);
+            this.reset();
         }
     }
 

@@ -7,7 +7,12 @@ class TodoApp extends Component {
     constructor() {
         super();
         this.state=({
-            todos: []
+            todos: [
+                {
+                    value: "",
+                    done: false
+                }
+            ]
         });
     }
 
@@ -21,7 +26,7 @@ class TodoApp extends Component {
         return (
             <div>
                 <TodoBar getTodo={this.getListTodoFromInput.bind(this)}/>
-                <TodoList todos={this.state.todos} />
+                <TodoList todos={this.state.todos.value} />
             </div>
         );
     }

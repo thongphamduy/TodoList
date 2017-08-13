@@ -1,16 +1,5 @@
 import React, {Component} from 'react';
 import TodoRow from './TodoRow';
-import PropTypes from 'prop-types';
-
-let todoListStyle = {
-    display: "inline-block",
-    width: "50%",
-    background_color: "green",
-}
-let todoItemStyle = {
-    width: "80%",
-    display: "inline-block",
-}
 
 class TodoList extends Component {
     constructor (props) {

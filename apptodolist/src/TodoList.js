@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TodoRow from './TodoRow';
 import PropTypes from 'prop-types';
 
 let todoListStyle = {
@@ -12,37 +13,34 @@ let todoItemStyle = {
 }
 
 class TodoList extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
-        this.listItems = [];
-        this.handleDelete = this.handleDelete.bind(this);
+        this.completeItem=this.completeItem.bind(this);
+        this.removeItem=this.removeItem.bind(this);
     }
 
-    handleDelete (indexItem) {
-        this.setState(this.props.todos.splice(indexItem, 1));
+    removeItem (id){
+        this.props.removeItem(id);
+        return;
+    }
+    completeItem(id) {
+        this.props.completeItem(id);
+        return;
     }
 
     render() {
-        this.listItemtodos = this.props.todos;
-        console.log("list todo to render " + this.props.todos);
-        return (
-            <div className="list-group background" style={todoListStyle}>
-                {this.props.todos.map(function(todo, index){
-                    return (
-                        <div key={index}>
-                            <span>{todo.id}</span>
-                            <a href="#" className="list-group-item" style={todoItemStyle} >{todo}</a>
-                            <a href="#" onClick={() => this.handleDelete(index)}>X</a>
-                        </div>
-                    );
-                }.bind(this))}
-            </div>
-        )
+        let todoItems=this.props.todoItem.map(function (item) {
+            console.log(item);
+            return (
+                <TodoRow task={item.task} key={item.id} idx={item.id} complete={item.complete} removeItem={this.removeItem} completeItem={this.completeItem}/>);
+        },this);
+        console.log(todoItems);
+        return(
+            <ul className="list-group">
+                {todoItems}
+            </ul>
+        );
     }
+
 }
-
-TodoList.propTypes = {
-    todos: PropTypes.array
-};
-
 export  default TodoList;

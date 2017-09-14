@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TodoBar from "./TodoBar";
-import TodoList from "./TodoList";
+import TodoBar from "./components/TodoBar";
+import TodoList from "./components/TodoList";
 
 let container = {
     position: "fixed",
